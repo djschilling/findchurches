@@ -12,7 +12,8 @@ function initMap() {
 	churches.forEach(function (church) {
 		var marker = new google.maps.Marker({
 			position: {lat: church.lat, lng: church.lng},
-			map: map
+			map: map,
+			title: church.name + ' in ' + church.city
 		});
 		marker.addListener('click', function() {
 			showDetails(church);
