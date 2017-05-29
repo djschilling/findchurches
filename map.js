@@ -1,6 +1,6 @@
 var churches = [
-	{name: 'Landeskirche Gomaringen', city: 'Gomaringen', lat: 48.45246, lng: 9.0931113 },
-	{name: 'Peterskirche', city: 'Dusslingen', lat: 48.4514457, lng: 9.0501535}
+	{name: 'Evangelische Kirchengemeinde', city: 'Gomaringen', lat: 48.45246, lng: 9.0931113, website: 'http://kirche-gomaringen.de/' },
+	{name: 'Peterskirche', city: 'Dusslingen', lat: 48.4514457, lng: 9.0501535, website: 'http://www.evangelische-kirche-dusslingen.de/'}
 ];
 
 function initMap() {
@@ -14,5 +14,17 @@ function initMap() {
 			position: {lat: church.lat, lng: church.lng},
 			map: map
 		});
+		marker.addListener('click', function() {
+			showDetails(church);
+		});
 	});
+}
+
+function showDetails(church) {
+	$header = $('<h1>').text(church.name + ' in ' + church.city);
+	var $details = $('#details');
+	$details.html('');
+	$details.append($header)
+	$details.append($('<div>').html('<a href="' + church.website +'">Zur Webseite</a>'));
+
 }
